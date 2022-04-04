@@ -205,7 +205,7 @@ if __name__ == "__main__":
         commandsToIgnoreLevels = loadJSON('commandsToIgnore.json')
     else:
         commandsToIgnoreLevels = {
-            1: ['author', 'affiliation', 'email', 'CCSXML', 'ccsdesc', 'figure', 'table'],
+            1: ['author', 'affiliation', 'email', 'CCSXML', 'ccsdesc'],
             2: ['streetaddress', 'city', 'orcid', 'additionalaffiliation'],
             3: [ 'state', 'country', 'postcode'],
             4: ['orcid', 'additionalaffiliation']
