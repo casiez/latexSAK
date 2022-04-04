@@ -23,4 +23,4 @@ Creates the zip archive of the previously cleaned folder (articleclean/).
 ### Get text --text
 Get text only and creates the file ```articleTextOnly.md```
 ### Captions --captions
-Get captions from images and tables. 
+Get captions from images and tables that use the \Description command from [acmart](https://www.ctan.org/pkg/acmart). 
