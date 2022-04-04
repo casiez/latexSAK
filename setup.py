@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
      name='latexSAK',  
-     version='0.1.0',
+     version='0.1.2',
      scripts=['latexSAK'] ,
      author="Géry Casiez",
      author_email="gery.casiez@gmail.com",
