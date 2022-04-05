@@ -1,4 +1,6 @@
 # LatexSAK
+
+LaTeX swiss army knife
 ## Install
 ```pip install latexSAK --upgrade```
 

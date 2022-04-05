@@ -57,6 +57,9 @@ def cleanCode(soup):
     # Copy bib files
     os.system("cp *.bib articleclean/")
 
+    # Copy sty files
+    os.system("cp *.sty articleclean/")
+
     # Check if graphicspath command exists
     graphicsMainDir = ''
 
