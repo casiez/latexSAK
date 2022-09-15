@@ -19,7 +19,7 @@ latexSAK first removes all commands listed in ```commandsToIgnore.json```. This 
 ### Number of words --count
 Count the number of words
 ### clean the tex file and figures --clean
-Creates a clean version of the document, using image files actually used.
+Creates a clean version of the document, using image files actually used. Cleaned files can be found in articleclean/ folder.
 ### zip --zip
 Creates the zip archive of the previously cleaned folder (articleclean/).
 ### Get text --text
