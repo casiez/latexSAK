@@ -1,3 +1,6 @@
+[![PyPI Version](https://img.shields.io/pypi/v/latexSAK)](https://pypi.org/project/latexSAK/)
+[![License](https://img.shields.io/github/license/casiez/latexSAK)](LICENSE)
+
 # LatexSAK
 
 LaTeX swiss army knife
