@@ -193,7 +193,7 @@ def saveJSON(data, file):
   with open(file, 'w') as fp:
       json.dump(data, fp, ensure_ascii=False)
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(description='LaTeX swiss army knife')
     parser.add_argument('file', help = 'main tex file')
     parser.add_argument('--count', help = 'Count the number of words', action="store_true")
@@ -254,3 +254,7 @@ if __name__ == "__main__":
 
         if args.captions:
             getCaptions(soup)
+
+
+if __name__ == "__main__":
+    main()
