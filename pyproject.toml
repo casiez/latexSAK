@@ -1,12 +1,12 @@
 [project]
 name = "latexSAK"
-version = "0.1.4"
+version = "0.2.0"
 description = "Swiss army knife for LaTeX files."
 readme = "README.md"
 authors = [
     { name = "Géry Casiez", email = "gery.casiez@gmail.com" }
 ]
-license = { text = "MIT" }
+license = "MIT"
 requires-python = ">=3.0"
 dependencies = [
     "argparse",
@@ -15,8 +15,8 @@ dependencies = [
 
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: MacOS"
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux"
 ]
 
 [project.urls]

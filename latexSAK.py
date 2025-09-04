@@ -13,6 +13,7 @@ from pathlib import Path
 from TexSoup import TexSoup
 from TexSoup import TexNode
 from TexSoup import data
+import platform
 
 class myList(list):
     def __new__(cls, data=None):
@@ -43,7 +44,7 @@ def removeCommands(soup, cmds):
             c.replace_with(desc)    
 
 # Replace command cmd with txt
-def replaceCommand(cmd, txt):
+def replaceCommand(soup, cmd, txt):
     for c in soup.find_all(cmd):
         try:
             c.replace_with(TexNode(data.TexText(txt)))
@@ -142,8 +143,12 @@ def countWords(soup):
 
     # Remove all latex commands
     # brew install opendetex
-    os.system("delatex new2.tex > new3.tex")
+    if platform.system() == 'Linux':
+        os.system("detex new2.tex > new3.tex")
+    else:
+        os.system("delatex new2.tex > new3.tex")
     os.system("awk 'NF > 0 {blank=0} NF == 0 {blank++} blank < 2' new3.tex > new4.tex")
+    print("Number of lines, words, characters:")
     os.system("wc new4.tex")   
     os.system("rm new2.tex new3.tex new4.tex")  
 
@@ -161,13 +166,13 @@ def textOnly(soup):
         c.string = "### %s"%c.string  
 
     # replace \cite with [1]
-    replaceCommand('cite', "[1]")
+    replaceCommand(soup, 'cite', "[1]")
 
     # replace \ref with 1
-    replaceCommand('ref', "1")
+    replaceCommand(soup, 'ref', "1")
 
     # replace \etal with et al.
-    replaceCommand('etal', "et al.")
+    replaceCommand(soup, 'etal', "et al.")
 
     f2 = open("new2.tex", "w")
     for c in soup.contents:
@@ -176,7 +181,10 @@ def textOnly(soup):
 
     # Remove all latex commands
     # brew install opendetex
-    os.system("delatex new2.tex > new3.tex")
+    if platform.system() == 'Linux':
+        os.system("detex new2.tex > new3.tex")
+    else:
+        os.system("delatex new2.tex > new3.tex")
     os.system("awk 'NF > 0 {blank=0} NF == 0 {blank++} blank < 2' new3.tex > articleTextOnly.md") 
     os.system("rm new2.tex new3.tex")  
 
