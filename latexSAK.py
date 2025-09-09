@@ -105,7 +105,9 @@ def getCaptions(soup):
         elif len(c.contents) == 2:
             desc = c.contents[1]
         elif len(c.contents) > 2:
-            desc = "".join(c.contents[1:])
+            desc = ""
+            for d in c.contents:
+                desc += str(d)
         else:
             desc = "NO DESCRIPTION"
 
