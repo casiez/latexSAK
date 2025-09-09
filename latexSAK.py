@@ -242,34 +242,34 @@ def main():
         cmdsToClean.extend(commandsToIgnoreLevels[str(i)])
 
 
+    # Combines all tex files into one
+    os.system("latexpand %s > new.tex"%(args.file))
+
+    with open('new.tex', 'r') as f:
+        s = "\n".join([x.strip() for x in f]) 
+
+    soup = TexSoup(s)
+    f.close()
+    os.system("rm new.tex") 
+
+    for c0 in cmdsToClean:
+        for c in soup.find_all(c0):
+            c.delete()
+
+    if args.count:
+        countWords(soup)
+
+    if args.clean:
+        cleanCode(soup)
+
+    if args.text:
+        textOnly(soup)
+
+    if args.captions:
+        getCaptions(soup)
+
     if args.zip:
         createZip()
-    else:
-        # Combines all tex files into one
-        os.system("latexpand %s > new.tex"%(args.file))
-
-        with open('new.tex', 'r') as f:
-          s = "\n".join([x.strip() for x in f]) 
-
-        soup = TexSoup(s)
-        f.close()
-        os.system("rm new.tex") 
-
-        for c0 in cmdsToClean:
-            for c in soup.find_all(c0):
-                c.delete()
-
-        if args.count:
-            countWords(soup)
-
-        if args.clean:
-            cleanCode(soup)
-
-        if args.text:
-            textOnly(soup)
-
-        if args.captions:
-            getCaptions(soup)
 
 
 if __name__ == "__main__":
