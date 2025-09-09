@@ -51,6 +51,17 @@ def replaceCommand(soup, cmd, txt):
         except Exception as e:
             print("pb with %s: %s"%(c, e))
 
+def getImgs(soup, elt = 'includegraphics', graphicsMainDir = '', listImg = [], dirs = []):
+    for c in soup.find_all(elt):
+        img = str(c.args[-1]).replace("{","").replace("}","")
+        directory = img.split("/")
+        actualDir = "/".join(directory[:-1])
+        if actualDir not in dirs:
+            dirs.append("%s%s"%(graphicsMainDir, actualDir))
+        listImg.append(img)
+
+    return listImg, dirs
+
 def cleanCode(soup):
     mainDir = 'articleclean'
     createDir(mainDir)
@@ -70,13 +81,8 @@ def cleanCode(soup):
     # Get images
     listImg = []
     dirs = []
-    for c in soup.find_all('includegraphics'):
-        img = str(c.args[-1]).replace("{","").replace("}","")
-        directory = img.split("/")
-        actualDir = "/".join(directory[:-1])
-        if actualDir not in dirs:
-            dirs.append("%s%s"%(graphicsMainDir, actualDir))
-        listImg.append(img)
+    listImg, dirs = getImgs(soup, 'includegraphics', graphicsMainDir, listImg, dirs)
+    listImg, dirs = getImgs(soup, 'includesvg', graphicsMainDir, listImg, dirs)
 
     # Create folders and clean up images
     createDir(mainDir)
@@ -218,10 +224,10 @@ def main():
         commandsToIgnoreLevels = loadJSON('commandsToIgnore.json')
     else:
         commandsToIgnoreLevels = {
-            '1': ['author', 'affiliation', 'email', 'CCSXML', 'ccsdesc'],
-            '2': ['streetaddress', 'city', 'orcid', 'additionalaffiliation'],
+            '1': ['author', 'affiliation', 'email', 'CCSXML', 'ccsdesc', 'orcid'],
+            '2': ['streetaddress', 'city', 'additionalaffiliation'],
             '3': [ 'state', 'country', 'postcode'],
-            '4': ['orcid', 'additionalaffiliation']
+            '4': ['additionalaffiliation']
         }
         saveJSON(commandsToIgnoreLevels, 'commandsToIgnore.json')
 
