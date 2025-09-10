@@ -93,6 +93,7 @@ def cleanCode(soup):
     for img in listImg:
         directory = img.split("/")
         actualDir = "/".join(directory[:-1])
+        img = img.replace(" ", "\\ ")
         cmd = 'cp %s%s* %s/%s%s'%(graphicsMainDir, img, mainDir, graphicsMainDir, actualDir)
         os.system(cmd)
 
